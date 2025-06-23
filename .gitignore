@@ -1,0 +1,44 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, coverage, build artifacts
+*.test
+*.out
+*.tmp
+*.log
+
+# Output of the go build command
+/build/
+/bin/
+/dist/
+
+# Dependency directories (go mod takes care of deps)
+vendor/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# CompileDaemon artifacts
+CompileDaemon.pid
+
+# Go workspace
+*.work
+
+# Temporary files
+**/*~
