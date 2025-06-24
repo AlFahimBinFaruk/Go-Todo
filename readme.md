@@ -12,3 +12,6 @@ CompileDaemon -command="./go-todo"
 ```cmd
 go run server.go
 ```
+
+### Features
+[ ] JWT Authentication
