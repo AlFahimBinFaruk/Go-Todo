@@ -14,4 +14,7 @@ go run server.go
 ```
 
 ### Features
-[ ] JWT Authentication
+- [ ] JWT Authentication
+- [ ] Pagination
+- [ ] Elastic Search
+- [ ] Logging and Metrics
