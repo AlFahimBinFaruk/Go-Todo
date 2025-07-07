@@ -39,7 +39,6 @@ func LoginUser(c *gin.Context) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedtoken, err := token.SignedString([]byte(os.Getenv("JWT_SECRET")))
-	// fmt.Println("TOKEN ==> ", os.Getenv("JWT_SECRET"))
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to register user."})
 		return
