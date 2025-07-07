@@ -23,8 +23,9 @@ func InitUUIDExtension(db *gorm.DB) {
 func main() {
 	//Ensure uuid-ossp extension is installed in db.
 	InitUUIDExtension(initializers.DB)
-	err := initializers.DB.AutoMigrate(&models.TODO{})
+	err := initializers.DB.AutoMigrate(&models.USER{}, &models.TODO{})
 	if err != nil {
-		log.Fatalf("Failed to connect to DB!!: %v", err)
+		log.Fatalf("XXXX- Failed to connect to DB!!: %v", err)
 	}
+	log.Println("DB Migration Successful.")
 }

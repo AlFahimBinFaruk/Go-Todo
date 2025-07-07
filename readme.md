@@ -12,9 +12,3 @@ CompileDaemon -command="./go-todo"
 ```cmd
 go run server.go
 ```
-
-### Features
-- [ ] JWT Authentication
-- [ ] Pagination
-- [ ] Elastic Search
-- [ ] Logging and Metrics

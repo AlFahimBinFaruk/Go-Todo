@@ -2,7 +2,9 @@ package main
 
 import (
 	"go-todo/controllers/todo"
+	"go-todo/controllers/user"
 	"go-todo/initializers"
+	"go-todo/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,11 +17,19 @@ func init() {
 
 func main() {
 	router := gin.Default()
-	router.POST("/todo/create", todo.CreateTodo)
-	router.GET("/todo/get-all", todo.GetTodos)
-	router.GET("/todo/details/:id", todo.GetTodo)
-	router.PUT("/todo/update/:id", todo.UpdateTodo)
-	router.DELETE("/todo/delete/:id", todo.DeleteTodo)
+	todoGroup := router.Group("/todo", middleware.RequireAuth)
+	{
+		todoGroup.POST("/create", todo.CreateTodo)
+		todoGroup.GET("/get-all", todo.GetTodos)
+		todoGroup.GET("/details/:id", todo.GetTodo)
+		todoGroup.PUT("/update/:id", todo.UpdateTodo)
+		todoGroup.DELETE("/delete/:id", todo.DeleteTodo)
+	}
+	userGroup := router.Group("/user")
+	{
+		userGroup.POST("/login", user.LoginUser)
+		userGroup.POST("/register", user.RegisterUser)
+	}
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "PONG",
