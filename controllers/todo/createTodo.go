@@ -10,6 +10,14 @@ import (
 )
 
 func CreateTodo(c *gin.Context) {
+	defer func() {
+		if r := recover(); r != nil {
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+				"error": "Interner Server Error in => GetTodo.",
+			})
+		}
+	}()
+
 	type REQ struct {
 		Title string
 		Desc  string
@@ -19,6 +27,7 @@ func CreateTodo(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Bad Request."})
 		return
 	}
+
 	userIdStr, _ := c.Get("userId")
 	userId, err := uuid.Parse(userIdStr.(string))
 	if err != nil {
@@ -42,5 +51,6 @@ func CreateTodo(c *gin.Context) {
 	}
 	c.JSON(202, gin.H{
 		"todo": todo,
+		"msg":  "Todo created successfully.",
 	})
 }
